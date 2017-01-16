@@ -6,7 +6,7 @@
 // #### DISPLAY CAN EASILY BY DESTROYED ######
 //
 // Arduino Pins:
-//     Digital 0..5     Row#
+//     Digital 3..7     Row#
 //     Digital 8        Row SET
 //     Digital 9        Row RESET
 //     Digital 10..12   Panel#
@@ -79,6 +79,8 @@ void rowSelect(int row, int state) {
   if (row>6) row++;
   if (row>14) row++;
   if (row>22) row++;
+// Hier wird die dezimale Zeilennumer binaer codiert auf ausgegeben
+// Maskierung mit UND
   digitalWrite(3, row & 4);   // Scrambled to make up for wiring
   digitalWrite(4, row & 8);
   digitalWrite(5, row & 16);
@@ -106,7 +108,8 @@ void colSelect(int col, int state) {
   if (col>7)  col++;  // Somehow codes 7,16,24 have to be skipped
   if (col>15) col++;
   if (col>23) col++;
-
+// Hier wird die dezimale Spaltennummer binaer codiert auf ausgegeben
+// Maskierung mit UND
   digitalWrite(A0, col & 1);
   digitalWrite(A1, col & 2);
   digitalWrite(A2, col & 4);
@@ -125,7 +128,8 @@ void colSelect(int col, int state) {
 //             Gibt die Panelnummer an. 
 //===================================================
 void writePanel(int panel) {
-
+// Hier wird die dezimale Panelnummer binaer codiert auf 10 11 12 ausgegeben
+// Maskierung mit UND
   if (panel >= 0) {
     digitalWrite(10, panel & 1);
     digitalWrite(11, panel & 2);
