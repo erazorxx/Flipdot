@@ -11,7 +11,7 @@
 //================== Constants ===============================
 #define X_SIZE 168    // 128 column - own display has 98 columns
 #define Y_SIZE 4      // 28 rows (represented by 4 bytes) - own has 16 rows
-#define Y_PIXELS 24   // True Y-Size if the display
+#define Y_PIXELS 16   // True Y-Size if the display
 #define OFF 0
 #define ON 1
 
