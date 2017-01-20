@@ -9,8 +9,8 @@
 #include "font8x12.h"
 
 //================== Constants ===============================
-#define X_SIZE 168    // 128 column - own display has 98 columns
-#define Y_SIZE 4      // 28 rows (represented by 4 bytes) - own has 16 rows
+#define X_SIZE 112    // 128 column - change to 98
+#define Y_SIZE 4      // 28 rows (represented by 4 bytes)
 #define Y_PIXELS 16   // True Y-Size if the display
 #define OFF 0
 #define ON 1
@@ -33,12 +33,12 @@ void clearAll(int color) {
    int i,j;
 
 //   for (i=0; i<X_SIZE; i++) {
-   for (i=0; i<168; i++) {
+   for (i=0; i<112; i++) {
      Serial.println(i);
      for (j=0; j<Y_PIXELS; j++) {
        setFrameBuffer(i,j,color);
        pixel(i,j,color);
- //      delay(100);     // Slow down for debug
+ //     delay(100);     // Slow down for debug
      }
    }
 }
