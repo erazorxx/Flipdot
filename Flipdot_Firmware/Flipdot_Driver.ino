@@ -55,6 +55,7 @@ void flipdotSetup() {
 void pixel(int x, int y, int state) {
   int panelNr, colNr;
   if ((x<169) && (x>=0) && (y>=0) && (y<32)) {
+      // Ab Spalte 55 und 83 jeweils 7 dazu weil die 2 letzten Panels nur 21 Spalten haben
       if (x>55) {
 		   x = x + 7;
 	   }
@@ -64,7 +65,7 @@ void pixel(int x, int y, int state) {
       panelNr = x/28;   // integer division
       colNr = x%28;     // modulo division
       colSelect(colNr,state);
-      // rowSelect(y+1,state);  war original
+      // rowSelect(y+1,state);  war original y+1 - da fehlte aber eine Zeile
       rowSelect(y,state);
       writePanel(panelNr);
   }
@@ -81,7 +82,7 @@ void pixel(int x, int y, int state) {
 //             state = RESET Pixel wird zurückgesetzt
 //===================================================
 void rowSelect(int row, int state) {
-  // row++;
+  // row++;     -- entfernt da zweite Zeile nicht angesteuert wurde
   if (row>6) row++;
   if (row>14) row++;
   if (row>22) row++;
