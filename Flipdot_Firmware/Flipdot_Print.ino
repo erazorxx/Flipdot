@@ -9,9 +9,9 @@
 #include "font8x12.h"
 
 //================== Constants ===============================
-#define X_SIZE 112    // 128 column - change to 98
+#define X_SIZE 112    // 128 column - change to 112 (4*28)
 #define Y_SIZE 4      // 28 rows (represented by 4 bytes)
-#define Y_PIXELS 16   // True Y-Size if the display
+#define Y_PIXELS 16   // True Y-Size if the display - 24 auf 16
 #define OFF 0
 #define ON 1
 
