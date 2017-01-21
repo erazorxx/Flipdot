@@ -17,6 +17,8 @@
 //     Analog 3         FP2800 B0
 //     Analog 4         FP2800 B1
 //     Analog 5         FP2800 D
+// example PORTD = (1<<PD2);    //Pin 2 of portd as now the logic value 1
+//
 /////////////////////////////////////////////////////
 
 #include "Flipdot.h"
