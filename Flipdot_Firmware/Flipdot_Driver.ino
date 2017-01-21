@@ -36,12 +36,12 @@ void flipdotSetup() {
       
     // Alles auf High setzen, so macht es der originale Mikrocontroller auch, wenn alles inaktiv ist
     for (int i=3; i<14; i++) digitalWrite(i, HIGH);
-    digitalWrite(A0, HIGH);
-    digitalWrite(A1, HIGH);
-    digitalWrite(A2, HIGH);
-    digitalWrite(A3, HIGH);
-    digitalWrite(A4, HIGH);
-    digitalWrite(A5, HIGH);
+    digitalWrite(A0, HIGH);  // PORTF.7
+    digitalWrite(A1, HIGH);  // PORTF.6
+    digitalWrite(A2, HIGH);  // PORTF.5
+    digitalWrite(A3, HIGH);  // PORTF.4
+    digitalWrite(A4, HIGH);  // PORTF.1
+    digitalWrite(A5, HIGH);  // PORTF.0
 
     i=0;
     j=0;
@@ -86,14 +86,14 @@ void rowSelect(int row, int state) {
   if (row>6) row++;
   if (row>14) row++;
   if (row>22) row++;
-  digitalWrite(3, row & 4);   // Scrambled to make up for wiring
-  digitalWrite(4, row & 8);
-  digitalWrite(5, row & 16);
-  digitalWrite(6, row & 1);
-  digitalWrite(7, row & 2);
+  digitalWrite(3, row & 4);  // PORTD.0  // Scrambled to make up for wiring
+  digitalWrite(4, row & 8);  // PORTD.4
+  digitalWrite(5, row & 16); // PORTC.6
+  digitalWrite(6, row & 1);  // PORTD.7
+  digitalWrite(7, row & 2);  // PORTE.6
   if (state == SET) {
-     digitalWrite(9, HIGH); // SET (immer zuerst nach HIGH)
-     digitalWrite(8, LOW);  // Diese beiden Pins müssen immer komplementär sein - sonst raucht es
+     digitalWrite(9, HIGH);  // PORTB.5  // SET (immer zuerst nach HIGH)
+     digitalWrite(8, LOW);   // PORTB.4  // Diese beiden Pins müssen immer komplementär sein - sonst raucht es
  } else if (state == RESET) {
     digitalWrite(8, HIGH); // Diese beiden Pins müssen immer komplementär sein - sonst raucht es
     digitalWrite(9, LOW);  // RESET
@@ -114,14 +114,13 @@ void colSelect(int col, int state) {
   if (col>15) col++;
   if (col>23) col++;
 
-  digitalWrite(A0, col & 1);
-  digitalWrite(A1, col & 2);
-  digitalWrite(A2, col & 4);
-  digitalWrite(A3, col & 8);
-  digitalWrite(A4, col & 16);
+  digitalWrite(A0, col & 1);  // PORTF.7
+  digitalWrite(A1, col & 2);  // PORTF.6
+  digitalWrite(A2, col & 4);  // PORTF.5
+  digitalWrite(A3, col & 8);  // PORTF.4
+  digitalWrite(A4, col & 16); // PORTF.1
 
-  digitalWrite(A5, state);
-
+  digitalWrite(A5, state);    // PORTF.0
 }
 
 //===================================================
@@ -134,12 +133,12 @@ void colSelect(int col, int state) {
 void writePanel(int panel) {
 
   if (panel >= 0) {
-    digitalWrite(10, panel & 1);
-    digitalWrite(11, panel & 2);
-    digitalWrite(12, panel & 4);
+    digitalWrite(10, panel & 1);  // PORTB.6
+    digitalWrite(11, panel & 2);  // PORTB.7
+    digitalWrite(12, panel & 4);  // PORTD.6
 
-    digitalWrite(13, LOW);   // Kurzer Puls, der das Panel enabled
+    digitalWrite(13, LOW);        // PORTC.7  // Kurzer Puls, der das Panel enabled
     delay(10);
   } 
-  digitalWrite(13, HIGH);  
+  digitalWrite(13, HIGH);         // PORTC.7 
 }
